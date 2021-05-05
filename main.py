@@ -1,19 +1,25 @@
 
+import sys
 import subprocess
 import json
+from python_exif.printer import *
 
 
-def run_exiftools(path):
-    result = subprocess.run(['exiftool', '-j', path], stdout=subprocess.PIPE)
+def run_exiftools(paths):
+    commands = ['exiftool', '-j'] + paths
+    result = subprocess.run(commands , stdout=subprocess.PIPE)
     return result.stdout
 
 
+def arguments():
+    return sys.argv[1:]
+
+
 def main():
-    result = run_exiftools("/home/yosuke/picture/20210503/raw/*.NEF")
-    print(result)
+    result = run_exiftools(arguments())
     files = json.loads(result)
-    lens = [f['LensID'] or f['LensModel'] for f in files]
-    print(lens)
+    print_camera_list(files)
+    print_lens_list(files)
 
 
 if __name__ == '__main__':
