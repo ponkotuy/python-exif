@@ -20,6 +20,7 @@ def main():
     files = json.loads(result)
     print_camera_list(files)
     print_lens_list(files)
+    print_focal_length(files)
 
 
 if __name__ == '__main__':
