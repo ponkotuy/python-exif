@@ -67,12 +67,14 @@ def print_camera_list(data):
 FOCAL_LENGTHS = [10, 15, 20, 24, 28, 35, 40, 45, 50, 60, 70, 85, 105, 135, 200, 300, 400, 500, 600, 800, 1000, 1200]
 
 def parse_length(length) -> int:
+    if not length:
+        return 0
     result = re.findall(r"\d+", length)
-    return int(result[0])
+    return int(result[0]) if result else 0
 
 
 def print_focal_length(data):
-    lengths = [parse_length(f.get('FocalLengthIn35mmFormat')) for f in data]
+    lengths = [parse_length(f.get('FocalLengthIn35mmFormat') or f.get('FocalLength35efl')) for f in data]
     lengths = filter(lambda x: x != 0, lengths)
     length_groups = grouping_range_count(lengths, FOCAL_LENGTHS)
     print('---- FOCAL LENGTH ----')
