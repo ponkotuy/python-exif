@@ -1,5 +1,7 @@
 
 def render(data: list, width = 40):
+    if not data:
+        return
     key_length = max(len(key) for key, _ in data)
     graph_length = width - key_length - 2
     max_value = max(value for _, value in data)
@@ -15,3 +17,4 @@ def render(data: list, width = 40):
 
 def main():
     render([('A', 12), ('BC', 24), ('DEF', 36)])
+    render([])
