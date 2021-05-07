@@ -2,6 +2,8 @@ import re
 from dataclasses import dataclass
 from typing import Optional
 
+from python_exif import termgraph
+
 
 @dataclass
 class Group:
@@ -35,10 +37,9 @@ def grouping_range_count(data, separators) -> [Group]:
     return groups
 
 
-def print_dict(dic):
-    items = dic.items()
-    for xs in sorted(items, key=lambda x: -x[1]):
-        print(f'{xs[0]}: {xs[1]}')
+def print_dict(dic, is_sort: bool = True):
+    items = sorted(dic.items(), key=lambda x: -x[1]) if is_sort else dic.items()
+    termgraph.render(items, 80)
 
 
 def print_grouping_count(groups: [Group]):
@@ -46,7 +47,7 @@ def print_grouping_count(groups: [Group]):
     for group in groups:
         if group.count != 0:
             dic[group.name()] = group.count
-    print_dict(dic)
+    print_dict(dic, False)
 
 
 def print_lens_list(data):
@@ -72,6 +73,7 @@ def parse_length(length) -> int:
 
 def print_focal_length(data):
     lengths = [parse_length(f.get('FocalLengthIn35mmFormat')) for f in data]
+    lengths = filter(lambda x: x != 0, lengths)
     length_groups = grouping_range_count(lengths, FOCAL_LENGTHS)
     print('---- FOCAL LENGTH ----')
     print_grouping_count(length_groups)
