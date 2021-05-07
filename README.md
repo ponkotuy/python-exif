@@ -26,3 +26,10 @@ AF-S VR Zoom-Nikkor 70-300mm f/4.5-5.6G IF-ED: 213▇▇▇▇▇▇▇▇▇▇
 135-200: 18▇▇▇▇▇▇▇▇▇▇
 200-300: 100▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
 ```
+
+## Tested Camera
+- Nikon Z6/Z7(+FTZ)
+- SONY A7C
+- OLYMPUS E-PL10
+- Panasonic GX7MK3(GX9)
+- Canon RP
