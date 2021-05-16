@@ -27,9 +27,28 @@ AF-S VR Zoom-Nikkor 70-300mm f/4.5-5.6G IF-ED: 213▇▇▇▇▇▇▇▇▇▇
 200-300: 100▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
 ```
 
+## Help
+```
+$ poetry run main -h
+usage: Aggregate EXIF [-h] [-w WIDTH] [-l [LENS ...]] [-c [CAMERA ...]]
+                      [paths ...]
+
+positional arguments:
+  paths                 images paths
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -w WIDTH, --width WIDTH
+                        print width
+  -l [LENS ...], --lens [LENS ...]
+                        select lens
+  -c [CAMERA ...], --camera [CAMERA ...]
+                        select camera
+```
+
 ## Tested Camera
 - Nikon Z6/Z7(+FTZ)
-- SONY A7C
+- SONY A7C/A7III
 - OLYMPUS E-PL10
 - Panasonic GX7MK3(GX9)
-- Canon RP
+- Canon EOS-RP

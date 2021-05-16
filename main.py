@@ -1,8 +1,11 @@
-
-import sys
+import argparse
 import subprocess
 import json
-from python_exif.printer import *
+
+from python_exif.aggregator import Aggregator
+from python_exif.eixf_parser import parse_exif
+from python_exif.filter_cond import gen_filter
+from python_exif.printer import Printer
 
 
 def run_exiftools(paths):
@@ -12,15 +15,26 @@ def run_exiftools(paths):
 
 
 def arguments():
-    return sys.argv[1:]
+    parser = argparse.ArgumentParser("Aggregate EXIF")
+    parser.add_argument("-w", "--width", help="print width", type=int, default=80)
+    parser.add_argument("-l", "--lens", help="select lens", nargs='*')
+    parser.add_argument("-c", "--camera", help="select camera", nargs='*')
+    parser.add_argument("paths", help="images paths", nargs='*')
+    args = parser.parse_args()
+    if len(args.paths) == 0:
+        print("Argument required")
+        exit(1)
+    return args
 
 
 def main():
-    result = run_exiftools(arguments())
+    args = arguments()
+    result = run_exiftools(args.paths)
     files = json.loads(result)
-    print_camera_list(files)
-    print_lens_list(files)
-    print_focal_length(files)
+    exifs = [parse_exif(f) for f in files]
+    aggregator = Aggregator(exifs, lens_filter=gen_filter(args.lens), camera_filter=gen_filter(args.camera))
+    printer = Printer(args.width)
+    printer.print(aggregator)
 
 
 if __name__ == '__main__':
