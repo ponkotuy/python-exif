@@ -1,6 +1,6 @@
-from python_exif.eixf_parser import Exif
-from python_exif.filter_cond import FilterCond, FILTER_NONE
-from python_exif.group import Group
+from aggexif.eixf_parser import Exif
+from aggexif.filter_cond import FilterCond, FILTER_NONE
+from aggexif.group import Group
 
 FOCAL_LENGTHS = [10, 15, 20, 24, 28, 35, 40, 45, 50, 60, 70, 85, 105, 135, 200, 300, 400, 500, 600, 800, 1000, 1200]
 

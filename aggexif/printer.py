@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from python_exif import termgraph
-from python_exif.aggregator import Aggregator
-from python_exif.group import Group
+from aggexif import termgraph
+from aggexif.aggregator import Aggregator
+from aggexif.group import Group
 
 
 @dataclass(frozen=True)

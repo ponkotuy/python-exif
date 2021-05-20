@@ -1,10 +1,15 @@
 ## Required
+- python 3.8 later & pip
 - exiftool
-- poetry
+
+## Install
+```
+# pip install aggexif
+```
 
 ## Usage
 ```
-$ poetry run main ~/dir/*.NEF
+$ aggexif ~/dir/*.NEF
 ---- CAMERA LIST ----
 NIKON Z 7: 276▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
 NIKON Z 6: 69▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
@@ -29,7 +34,7 @@ AF-S VR Zoom-Nikkor 70-300mm f/4.5-5.6G IF-ED: 213▇▇▇▇▇▇▇▇▇▇
 
 ## Help
 ```
-$ poetry run main -h
+$ aggexif -h
 usage: Aggregate EXIF [-h] [-w WIDTH] [-l [LENS ...]] [-c [CAMERA ...]]
                       [paths ...]
 
@@ -52,3 +57,20 @@ optional arguments:
 - OLYMPUS E-PL10
 - Panasonic GX7MK3(GX9)
 - Canon EOS-RP
+
+## Development
+Use poetry.
+
+```
+# run
+$ poetry run aggexif -h
+
+# build
+$ poetry build aggexif
+
+# local install(after build)
+$ pip install dist/aggexif-x.x.x.tar.gz
+
+# publish
+$ poetry publish
+```

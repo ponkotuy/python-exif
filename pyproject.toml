@@ -1,18 +1,20 @@
 [tool.poetry]
-name = "python-exif"
-version = "0.1.0"
-description = ""
+name = "aggexif"
+version = "0.2.2"
+readme = "README.md"
+license = "Apache-2.0"
+description = "Aggregate Image's EXIF Tool"
 authors = ["ponkotuy <web@ponkotuy.com>"]
+homepage = "https://github.com/ponkotuy/python-exif"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 
 [tool.poetry.scripts]
-main = "main:main"
-termgraph = "python_exif.termgraph:main"
+aggexif = "aggexif.main:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

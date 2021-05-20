@@ -26,7 +26,7 @@ class FilterCond:
         else:
             return True
 
-    def contains_match_value(self, values: set[str]):
+    def contains_match_value(self, values: set):
         if self.type in (FilterType.ENTIRE_MATCH, FilterType.ENTIRE_MATCH_NOT, FilterType.NONE):
             return self
         if set(self.values) & values:

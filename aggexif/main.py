@@ -2,10 +2,10 @@ import argparse
 import subprocess
 import json
 
-from python_exif.aggregator import Aggregator
-from python_exif.eixf_parser import parse_exif
-from python_exif.filter_cond import gen_filter
-from python_exif.printer import Printer
+from aggexif.aggregator import Aggregator
+from aggexif.eixf_parser import parse_exif
+from aggexif.filter_cond import gen_filter
+from aggexif.printer import Printer
 
 
 def run_exiftools(paths):
