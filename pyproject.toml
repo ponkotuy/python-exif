@@ -9,12 +9,14 @@ homepage = "https://github.com/ponkotuy/python-exif"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+h5py = "^3.6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 
 [tool.poetry.scripts]
 aggexif = "aggexif.main:main"
+cache = "aggexif.exif_cache:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -10,7 +10,7 @@ from aggexif.printer import Printer
 
 def run_exiftools(paths):
     commands = ['exiftool', '-j'] + paths
-    result = subprocess.run(commands , stdout=subprocess.PIPE)
+    result = subprocess.run(commands, stdout=subprocess.PIPE)
     return result.stdout
 
 
@@ -19,6 +19,7 @@ def arguments():
     parser.add_argument("-w", "--width", help="print width", type=int, default=80)
     parser.add_argument("-l", "--lens", help="select lens", nargs='*')
     parser.add_argument("-c", "--camera", help="select camera", nargs='*')
+    parser.add_argument("-a", "--cache", help="save exif in cache", action='store_true')
     parser.add_argument("paths", help="images paths", nargs='*')
     args = parser.parse_args()
     if len(args.paths) == 0:

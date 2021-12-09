@@ -17,6 +17,7 @@ def parse_exif(obj) -> Exif:
     focal = None if focal == 0 else focal
     return Exif(lens, camera, focal)
 
+
 def parse_length(length) -> int:
     if not length:
         return 0
