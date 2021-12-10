@@ -35,6 +35,7 @@ def grouping_range_count(data, separators) -> [Group]:
         next((g for g in groups if g.has(num))).incr()
     return groups
 
+
 def grouping_count(ary):
     result = {}
     for x in ary:
