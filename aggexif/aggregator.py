@@ -1,4 +1,4 @@
-from aggexif.eixf_parser import Exif
+from aggexif.exif_parser import Exif
 from aggexif.filter_cond import FilterCond, FILTER_NONE
 from aggexif.group import Group
 

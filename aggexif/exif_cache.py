@@ -3,7 +3,7 @@ from dataclasses import asdict
 from os.path import expanduser
 from typing import Optional
 
-from aggexif.eixf_parser import Exif
+from aggexif.exif_parser import Exif
 from aggexif.hdf5_string_cache import HDF5StringCache
 
 

@@ -6,7 +6,7 @@ from os.path import normpath
 from typing import List, Dict
 
 from aggexif.aggregator import Aggregator
-from aggexif.eixf_parser import parse_exif, Exif
+from aggexif.exif_parser import parse_exif, Exif
 from aggexif.exif_cache import ExifCache
 from aggexif.filter_cond import gen_filter
 from aggexif.printer import Printer
