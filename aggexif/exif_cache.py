@@ -1,7 +1,7 @@
-import json
-from dataclasses import asdict
 from os.path import expanduser
 from typing import Optional
+
+from orjson import orjson
 
 from aggexif.exif_parser import Exif
 from aggexif.hdf5_string_cache import HDF5StringCache
@@ -20,11 +20,11 @@ class ExifCache:
         self.cache.close()
 
     def add(self, name: str, exif: Exif):
-        self.cache.add(name, json.dumps(asdict(exif)))
+        self.cache.add(name, orjson.dumps(exif))
 
     def read(self, name: str) -> Optional[Exif]:
         raw = self.cache.read(name)
-        return raw and Exif(**json.loads(raw))
+        return raw and Exif(**orjson.loads(raw))
 
 
 def main():
