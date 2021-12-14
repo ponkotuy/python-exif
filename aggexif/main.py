@@ -7,7 +7,6 @@ from typing import List, Dict
 
 from aggexif.aggregator import Aggregator
 from aggexif.exif_parser import parse_exif, Exif
-from aggexif.hdf5_exif_cache import HDF5ExifCache
 from aggexif.filter_cond import gen_filter
 from aggexif.printer import Printer
 from aggexif.sqlite_cache import SQLiteExifCache
