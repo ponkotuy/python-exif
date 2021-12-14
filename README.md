@@ -35,7 +35,8 @@ AF-S VR Zoom-Nikkor 70-300mm f/4.5-5.6G IF-ED: 213▇▇▇▇▇▇▇▇▇▇
 ## Help
 ```
 $ aggexif -h
-usage: Aggregate EXIF [-h] [-w WIDTH] [-l [LENS ...]] [-c [CAMERA ...]]
+usage: Aggregate EXIF [-h] [-w WIDTH] [-l [LENS ...]] [-c [CAMERA ...]] [-a]
+                      [--ignore-cache]
                       [paths ...]
 
 positional arguments:
@@ -49,7 +50,12 @@ optional arguments:
                         select lens
   -c [CAMERA ...], --camera [CAMERA ...]
                         select camera
+  -a, --cache           save exif in cache
+  --ignore-cache        ignore cache
 ```
+
+## Cache
+Aggexif supports local caching. If you want to save the cache, add a --cache option. If you want to disable the cache temporarily, use a --ignore-cache option. Since the cache is stored in `~/.config/aggexif/exif.db as a SQLite, so you can delete it to remove all the cache.
 
 ## Tested Camera
 - Nikon Z6/Z7(+FTZ)

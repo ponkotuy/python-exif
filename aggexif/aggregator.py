@@ -1,4 +1,4 @@
-from aggexif.eixf_parser import Exif
+from aggexif.exif_parser import Exif
 from aggexif.filter_cond import FilterCond, FILTER_NONE
 from aggexif.group import Group
 
@@ -34,6 +34,7 @@ def grouping_range_count(data, separators) -> [Group]:
     for num in data:
         next((g for g in groups if g.has(num))).incr()
     return groups
+
 
 def grouping_count(ary):
     result = {}
