@@ -1,9 +1,8 @@
 import argparse
 import subprocess
 import json
-from collections import Iterable
 from os.path import normpath
-from typing import List, Dict
+from typing import List, Dict, Iterable
 
 from aggexif.aggregator import Aggregator
 from aggexif.exif_parser import parse_exif, Exif
