@@ -72,11 +72,11 @@ Use poetry.
 $ poetry run aggexif -h
 
 # build
-$ poetry build aggexif
+$ poetry build
 
 # local install(after build)
 $ pip install dist/aggexif-x.x.x.tar.gz
 
 # publish
-$ poetry publish
+$ poetry publish -u ponkotuy -p `password`
 ```
