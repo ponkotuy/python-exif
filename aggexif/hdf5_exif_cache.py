@@ -7,7 +7,7 @@ from aggexif.exif_parser import Exif
 from aggexif.hdf5_string_cache import HDF5StringCache
 
 
-class ExifCache:
+class HDF5ExifCache:
     DIR_NAME = expanduser('~/.config/aggexif')
 
     def __init__(self):
@@ -30,7 +30,7 @@ class ExifCache:
 def main():
     name = "picture/20211206/raw/a.NEF"
     exif = Exif("NIKKOR Z 50mm f/1.8 S", "Z7", 50)
-    with ExifCache() as cache:
+    with HDF5ExifCache() as cache:
         cache.add(name, exif)
         print(cache.read(name))
         print(cache.read('notfound'))

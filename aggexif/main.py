@@ -7,7 +7,7 @@ from typing import List, Dict
 
 from aggexif.aggregator import Aggregator
 from aggexif.exif_parser import parse_exif, Exif
-from aggexif.exif_cache import ExifCache
+from aggexif.hdf5_exif_cache import HDF5ExifCache
 from aggexif.filter_cond import gen_filter
 from aggexif.printer import Printer
 
@@ -28,7 +28,7 @@ def read_exifs(paths: List[str]) -> Dict[str, Exif]:
     return exifs
 
 
-def read_cache_exifs(paths: Iterable[str], cache: ExifCache) -> Dict[str, Exif]:
+def read_cache_exifs(paths: Iterable[str], cache: HDF5ExifCache) -> Dict[str, Exif]:
     exif_dic = {}
     for path in paths:
         exif = cache.read(path)
@@ -41,13 +41,13 @@ def read_exif_process(args: argparse.Namespace) -> List[Exif]:
     paths = {normpath(path) for path in args.paths}
     exifs = []
     if not args.ignore_cache:
-        with ExifCache() as cache:
+        with HDF5ExifCache() as cache:
             exif_dic = read_cache_exifs(paths, cache)
             paths -= set(exif_dic.keys())
             exifs += exif_dic.values()
     read_result = read_exifs(list(paths))
     if args.cache:
-        with ExifCache() as cache:
+        with HDF5ExifCache() as cache:
             for name, exif in read_result.items():
                 cache.add(name, exif)
     exifs += read_result.values()
