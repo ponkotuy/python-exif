@@ -55,7 +55,7 @@ optional arguments:
 ```
 
 ## Cache
-Aggexif supports local caching. If you want to save the cache, add a --cache option. If you want to disable the cache temporarily, use a --ignore-cache option. Since the cache is stored in `~/.config/aggexif/exif.db as a SQLite, so you can delete it to remove all the cache.
+Aggexif supports local caching. If you want to save the cache, add a --cache option. If you want to disable the cache temporarily, use a --ignore-cache option. Since the cache is stored in `~/.config/aggexif/exif.db` as a SQLite, so you can delete it to remove all the cache.
 
 ## Tested Camera
 - Nikon Z6/Z7(+FTZ)
