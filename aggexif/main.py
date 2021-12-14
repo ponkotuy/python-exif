@@ -10,6 +10,7 @@ from aggexif.exif_parser import parse_exif, Exif
 from aggexif.hdf5_exif_cache import HDF5ExifCache
 from aggexif.filter_cond import gen_filter
 from aggexif.printer import Printer
+from aggexif.sqlite_cache import SQLiteExifCache
 
 
 def run_exiftools(paths: List[str]) -> bytes:
@@ -28,28 +29,22 @@ def read_exifs(paths: List[str]) -> Dict[str, Exif]:
     return exifs
 
 
-def read_cache_exifs(paths: Iterable[str], cache: HDF5ExifCache) -> Dict[str, Exif]:
-    exif_dic = {}
-    for path in paths:
-        exif = cache.read(path)
-        if exif is not None:
-            exif_dic[path] = exif
-    return exif_dic
+def read_cache_exifs(paths: Iterable[str], cache: SQLiteExifCache) -> Dict[str, Exif]:
+    return cache.reads(paths)
 
 
 def read_exif_process(args: argparse.Namespace) -> List[Exif]:
     paths = {normpath(path) for path in args.paths}
     exifs = []
     if not args.ignore_cache:
-        with HDF5ExifCache() as cache:
+        with SQLiteExifCache() as cache:
             exif_dic = read_cache_exifs(paths, cache)
             paths -= set(exif_dic.keys())
             exifs += exif_dic.values()
     read_result = read_exifs(list(paths))
     if args.cache:
-        with HDF5ExifCache() as cache:
-            for name, exif in read_result.items():
-                cache.add(name, exif)
+        with SQLiteExifCache() as cache:
+            cache.adds(read_result)
     exifs += read_result.values()
     return exifs
 

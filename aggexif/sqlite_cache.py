@@ -1,7 +1,7 @@
 import sqlite3
 from dataclasses import dataclass, asdict
 from os.path import expanduser
-from typing import Optional
+from typing import Optional, Iterable
 
 from aggexif.exif_parser import Exif
 
@@ -41,7 +41,7 @@ class SQLiteExifCache:
         cur.executemany(f"replace into exifs values (:path, :version, :lens, :camera, :focal_length)", exifs)
         self.conn.commit()
 
-    def reads(self, names: [str]):
+    def reads(self, names: Iterable[str]):
         if not names:
             return []
         cur = self.conn.cursor()
