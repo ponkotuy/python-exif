@@ -55,11 +55,14 @@ def arguments():
     parser.add_argument("-c", "--camera", help="select camera", nargs='*')
     parser.add_argument("-a", "--cache", help="save exif in cache", action='store_true')
     parser.add_argument("--ignore-cache", help="ignore cache", action='store_true')
-    parser.add_argument("paths", help="images paths", nargs='*', default=[line[:-1] for line in sys.stdin])
+    parser.add_argument("paths", help="images paths", nargs='*')
     args = parser.parse_args()
     if len(args.paths) == 0:
-        print("Argument required")
-        exit(1)
+        if sys.stdin.isatty():
+            print("Argument required")
+            exit(1)
+        else:
+            args.paths = [line[:-1] for line in sys.stdin]
     return args
 
 
