@@ -1,6 +1,7 @@
 import argparse
 import subprocess
 import json
+import sys
 from os.path import normpath
 from typing import List, Dict, Iterable
 
@@ -54,7 +55,7 @@ def arguments():
     parser.add_argument("-c", "--camera", help="select camera", nargs='*')
     parser.add_argument("-a", "--cache", help="save exif in cache", action='store_true')
     parser.add_argument("--ignore-cache", help="ignore cache", action='store_true')
-    parser.add_argument("paths", help="images paths", nargs='*')
+    parser.add_argument("paths", help="images paths", nargs='*', default=[line[:-1] for line in sys.stdin])
     args = parser.parse_args()
     if len(args.paths) == 0:
         print("Argument required")
