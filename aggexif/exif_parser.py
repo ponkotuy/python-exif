@@ -3,6 +3,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
 
+from aggexif.exif_time_parser import parse_time, parse_utc
+
 
 @dataclass(frozen=True)
 class Exif:
@@ -11,10 +13,6 @@ class Exif:
     focal_length: Optional[int]
     shooting_time: datetime
     shooting_time_utc: datetime
-
-
-EXIF_TIME_PARSER = '%Y:%m:%d %H:%M:%S'
-EXIF_TIME_PARSER_UTC = f'{EXIF_TIME_PARSER}%z'
 
 
 def parse_exif(obj) -> Exif:
@@ -32,11 +30,3 @@ def parse_length(length) -> int:
         return 0
     result = re.findall(r"\d+", length)
     return int(result[0]) if result else 0
-
-
-def parse_time(string: str):
-    return datetime.strptime(string, EXIF_TIME_PARSER)
-
-
-def parse_utc(string: str):
-    return datetime.strptime(string, EXIF_TIME_PARSER_UTC)

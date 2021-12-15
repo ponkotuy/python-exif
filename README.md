@@ -71,6 +71,9 @@ Use poetry.
 # run
 $ poetry run aggexif -h
 
+# test(doctest)
+$ poetry run pytest --doctest-modules
+
 # build
 $ poetry build
 
