@@ -13,6 +13,8 @@ def parse_time(string: str):
         datetime.datetime(2021, 9, 9, 11, 44, 15, 870000)
         >>> parse_time('2021:09:09 11:44:15')
         datetime.datetime(2021, 9, 9, 11, 44, 15)
+        >>> parse_time(None) is None
+        True
     """
     return parse_safe(string, EXIF_TIME_PARSER_MILLIS) or parse_safe(string, EXIF_TIME_PARSER)
 
@@ -24,6 +26,8 @@ def parse_utc(string: str):
         datetime.datetime(2021, 9, 9, 11, 44, 15, 870000, tzinfo=datetime.timezone.utc)
         >>> parse_utc('2021:09:09 11:44:15Z')
         datetime.datetime(2021, 9, 9, 11, 44, 15, tzinfo=datetime.timezone.utc)
+        >>> parse_utc(None) is None
+        True
     """
     return parse_safe(string, EXIF_TIME_PARSER_UTC_MILLIS) or parse_safe(string, EXIF_TIME_PARSER_UTC)
 
@@ -31,7 +35,7 @@ def parse_utc(string: str):
 def parse_safe(string: str, format: str):
     try:
         return datetime.strptime(string, format)
-    except ValueError:
+    except (ValueError, TypeError):
         return None
 
 
