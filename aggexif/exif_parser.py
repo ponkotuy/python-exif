@@ -12,7 +12,7 @@ class Exif:
     camera: str
     focal_length: Optional[int]
     shooting_time: datetime
-    shooting_time_utc: datetime
+    shooting_time_utc: Optional[datetime]
 
 
 def parse_exif(obj) -> Exif:

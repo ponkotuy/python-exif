@@ -18,7 +18,7 @@ class SQLiteExifCache:
                    "camera text not null," \
                    "focal_length integer," \
                    "shooting_time datetime not null," \
-                   "shooting_time_utc datetime not null," \
+                   "shooting_time_utc datetime," \
                    "unique(`path`))"
     VERSION = 2
 
@@ -51,9 +51,11 @@ class SQLiteExifCache:
             cur.execute(f'select version from exifs limit 1')
         except sqlite3.Error:
             return 0
-        version = cur.fetchone()[0]
+        version = cur.fetchone()
         cur.close()
-        return version
+        if version is None:
+            return 0
+        return version[0]
 
     def one_exec(self, sql: str):
         cur = self.conn.cursor()
@@ -105,7 +107,7 @@ class ExifRow:
     camera: str
     focal_length: Optional[int]
     shooting_time: datetime
-    shooting_time_utc: datetime
+    shooting_time_utc: Optional[datetime]
 
 
 def main():
