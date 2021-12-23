@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum, auto
+from typing import Optional
 
 
 class FilterType(Enum):
@@ -16,7 +17,9 @@ class FilterCond:
     type: FilterType
     values: [str]
 
-    def filter(self, value: str) -> bool:
+    def filter(self, value: Optional[str]) -> bool:
+        if value is None:
+            return False
         if self.type == FilterType.PARTIAL_MATCH:
             return any(v in value for v in self.values)
         elif self.type == FilterType.PARTIAL_MATCH_NOT:
