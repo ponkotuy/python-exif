@@ -8,6 +8,8 @@
 ```
 
 ## Usage
+Basic usage.
+
 ```
 $ aggexif ~/dir/*.NEF
 ---- CAMERA LIST ----
@@ -30,26 +32,68 @@ AF-S VR Zoom-Nikkor 70-300mm f/4.5-5.6G IF-ED: 213▇▇▇▇▇▇▇▇▇▇
 105-135: 11▇▇▇▇▇
 135-200: 18▇▇▇▇▇▇▇▇▇▇
 200-300: 100▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+---- YEAR ----
+2021: 345▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+```
+
+Use stdin pipe, -a(use cache), -w(print width), -l(filter lens), --monthly(view monthly graph) and --year(filter year).
+
+```
+find ~/picture/ -name "*.NEF" | poetry run aggexif -a -w=100 -l="14-30" --monthly --year=2021
+---- CAMERA LIST ----
+NIKON Z 6: 4441▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+NIKON Z 7: 1183▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+---- LENS LIST ----
+NIKKOR Z 14-30mm f/4 S: 5624▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+---- FOCAL LENGTH ----
+10-15: 1301▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+15-20: 946▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+20-24: 860▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+24-28: 428▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+28-35: 2088▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+40-45: 1
+---- MONTH ----
+2021/01: 185▇▇▇▇▇▇▇▇▇▇▇
+2021/02: 1192▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+2021/03: 491▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+2021/04: 712▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+2021/05: 756▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+2021/06: 523▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+2021/07: 507▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+2021/08: 146▇▇▇▇▇▇▇▇
+2021/09: 83▇▇▇▇
+2021/10: 586▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+2021/11: 227▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+2021/12: 216▇▇▇▇▇▇▇▇▇▇▇▇▇
 ```
 
 ## Help
 ```
-$ aggexif -h
-usage: Aggregate EXIF [-h] [-w WIDTH] [-l [LENS ...]] [-c [CAMERA ...]] [-a]
+usage: Aggregate EXIF [-h] [-w WIDTH] [-l LENS [LENS ...]] [-c CAMERA [CAMERA ...]]
+                      [--year YEAR [YEAR ...]] [--month MONTH [MONTH ...]]
+                      [--day DAY [DAY ...]] [--yearly] [--monthly] [--daily] [-a]
                       [--ignore-cache]
                       [paths ...]
 
 positional arguments:
   paths                 images paths
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -w WIDTH, --width WIDTH
                         print width
-  -l [LENS ...], --lens [LENS ...]
+  -l LENS [LENS ...], --lens LENS [LENS ...]
                         select lens
-  -c [CAMERA ...], --camera [CAMERA ...]
+  -c CAMERA [CAMERA ...], --camera CAMERA [CAMERA ...]
                         select camera
+  --year YEAR [YEAR ...]
+                        select year
+  --month MONTH [MONTH ...]
+                        select month
+  --day DAY [DAY ...]   select day of month
+  --yearly              view yearly graph
+  --monthly             view monthly graph
+  --daily               view daily graph
   -a, --cache           save exif in cache
   --ignore-cache        ignore cache
 ```
