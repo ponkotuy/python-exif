@@ -14,7 +14,7 @@ class SQLiteExifCache:
     CREATE_TABLE = "create table if not exists exifs (" \
                    "`path` text not null," \
                    "version integer not null," \
-                   "lens text not null," \
+                   "lens text," \
                    "camera text not null," \
                    "focal_length integer," \
                    "shooting_time datetime not null," \
@@ -88,14 +88,20 @@ class SQLiteExifCache:
         cur.executemany(sql, exifs)
         self.conn.commit()
 
-    def reads(self, names: Iterable[str]):
+    def reads(self, names: Iterable[str]) -> dict[str, Exif]:
         if not names:
-            return []
+            return {}
         cur = self.conn.cursor()
         csv = ', '.join(f"'{name}'" for name in names)
         result = {}
         for row in cur.execute(f'select * from exifs where path in ({csv}) and version = {self.VERSION}'):
-            result[row[0]] = Exif(*row[2:])
+            result[row[0]] = Exif(
+                row[2],
+                row[3],
+                row[4],
+                datetime.fromisoformat(row[5]),
+                row[6] and datetime.fromisoformat(row[6])
+            )
         return result
 
 

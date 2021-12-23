@@ -8,7 +8,7 @@ from aggexif.exif_time_parser import parse_time, parse_utc
 
 @dataclass(frozen=True)
 class Exif:
-    lens: str
+    lens: Optional[str]
     camera: str
     focal_length: Optional[int]
     shooting_time: datetime
@@ -17,6 +17,8 @@ class Exif:
 
 def parse_exif(obj) -> Exif:
     lens = obj.get('LensID') or obj.get('LensModel')
+    if 'Unknown' in lens:
+        lens = None
     camera = obj.get('Model')
     focal = parse_length(obj.get('FocalLengthIn35mmFormat') or obj.get('FocalLength35efl'))
     shooting_time = parse_time(obj.get('DateTimeOriginal'))
