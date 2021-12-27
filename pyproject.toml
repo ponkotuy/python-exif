@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aggexif"
-version = "0.4.0"
+version = "0.4.1"
 readme = "README.md"
 license = "Apache-2.0"
 description = "Aggregate Image's EXIF Tool"
