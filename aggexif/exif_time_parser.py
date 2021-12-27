@@ -32,9 +32,9 @@ def parse_utc(string: str):
     return parse_safe(string, EXIF_TIME_PARSER_UTC_MILLIS) or parse_safe(string, EXIF_TIME_PARSER_UTC)
 
 
-def parse_safe(string: str, format: str):
+def parse_safe(string: str, fmt: str):
     try:
-        return datetime.strptime(string, format)
+        return datetime.strptime(string, fmt)
     except (ValueError, TypeError):
         return None
 

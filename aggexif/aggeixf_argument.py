@@ -1,4 +1,5 @@
 import argparse
+import os
 import sys
 from enum import Enum, auto
 
@@ -9,6 +10,10 @@ class DateGraph(Enum):
     YEARLY = auto()
     MONTHLY = auto()
     DAILY = auto()
+
+
+def path_filter(path) -> bool:
+    return os.path.isfile(path)
 
 
 class AggexifArgument:
@@ -24,7 +29,7 @@ class AggexifArgument:
                 print("Argument required")
                 exit(1)
             else:
-                self.paths = [line[:-1] for line in sys.stdin]
+                self.paths = list(filter(path_filter, (line[:-1] for line in sys.stdin)))
 
     def date_filter(self):
         year = list(map(int, self.args.year))
