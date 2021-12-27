@@ -107,6 +107,7 @@ Aggexif supports local caching. If you want to save the cache, add a --cache opt
 - OLYMPUS E-PL10
 - Panasonic GX7MK3(GX9)
 - Canon EOS-RP
+- DJI Mavic Mini
 
 ## Development
 Use poetry.
